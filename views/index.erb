@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Xmas 2009</title>
+	
+	<link rel="stylesheet" href="/css/master.css" type="text/css" media="all"/>
+</head>
+<body>
+	<div id="tree">
+		<img src="/images/tree.jpg" height="679px" width="1024px" alt="Xmas tree"/>
+	</div>
+	<div id="gifts">
+		<% @gifts.each do |gift| %>
+			<div id="gift-<%= gift["gift_id"] %>" class="gift">
+				<div class="receiver">
+					<img src="<%= gift["receiver"]["icon"] %>" height="100px" width="100px" alt="<%= gift["receiver"]["name"] %>"/><br/>
+					<%= gift["receiver"]["name"] %>
+				</div>
+				
+				<div class="gift-info">
+					<% if gift["opened_at"].nil? %>
+				
+					<img src="/images/wrap/wrap-<%= gift["gift_id"].to_i %>.png" height="100px" width="100px" alt="Unwrap Gift!"/>
+					<form action="open-gift" method="post" accept-charset="utf-8" class="unwrap">
+						<input type="hidden" name="gift" value="<%= gift["gift_id"] %>" id="gift">
+						<input type="hidden" name="location" value="<%= gift["location"] %>" id="gift">
+						<label for="key">Code</label>
+						<input type="password" name="key" value="" id="key" size="4"><br/>
+						<input type="submit" value="Open it!">
+					</form>
+				
+					<% else %>
+				
+					<img src="<%= gift["info"]["icon"] %>" height="100px" width="100px" alt="<%= gift["info"]["title"] %>"/>
+					</div>
+					<div class="unwrapped">
+						<h2><%= gift["info"]["title"] %></h2>
+						<p><%= gift["info"]["message"] %></p>
+						<ul>
+							<li><a href="" onclick="window.open('http://www.bitlet.org/download?torrent=<%= URI.escape gift["info"]["link"] %>&referer=<%= URI.escape "http://noel.alexgirard.com" %>','','', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=400,height=140');void(0);">Direct Download</a> - pour les novices</li>
+							<li><a href="<%= gift["info"]["link"] %>">Fichier Torrent</a> - pour le p2p</li>
+							<li>Cadeau ouvert le <%= gift["opened_at"].strftime("%d/%m/%Y") %> &agrave; <%= gift["opened_at"].strftime("%H:%M") %></li>
+						</ul>
+				
+					<% end %>
+				</div>
+				
+			</div>
+		<% end %>
+	</div>
+	
+</body>
+</html>

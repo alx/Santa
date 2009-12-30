@@ -1,0 +1,41 @@
+body {
+	background-color:#000;
+	color:#FFF;
+	font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+
+a {
+	color:#fff;
+}
+
+#tree{
+	left:0px;
+	position:fixed;
+	top:20px;
+	z-index:-1;
+}
+
+#gifts {
+	margin-left:600px;
+}
+
+.gift{
+	float:left;
+	padding:20px;
+}
+
+.receiver{
+	float:left;
+	text-align:center;
+}
+
+.gift-info{
+	float:left;
+	padding-left:20px;
+}
+
+.unwrapped{
+	float:left;
+	padding-left:20px;
+	width:500px;
+}
