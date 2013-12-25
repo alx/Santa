@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  form(action="/addGift", method="post")
+    p
+      label(for="name") name :
+      input(type="text", name="name")
+    p
+      label(for="gift_name") gift_name :
+      input(type="text", name="gift_name")
+    p
+      label(for="message") message :
+      input(type="text", name="message")
+    p
+      label(for="img") img :
+      input(type="text", name="img")
+    p
+      label(for="gift_img") gift_img :
+      input(type="text", name="gift_img")
+    p
+      label(for="torrent") torrent :
+      input(type="text", name="torrent")
+    p
+      label(for="code") code :
+      input(type="text", name="code")
+    p
+      input(type='submit', value='add gift')
+  #gifts
+    each friend in friends
+      .gift
+        .receiver
+          img(src="/images/friends/" + friend.img, alt=friend.name, width="100px", height="100px")
+          img(src="/images/gifts/" + friend.gift_img, alt=friend.gift_name, width="100px", height="100px")
+          img(src="/images/wrap-" + friend.gift_wrap + ".png", alt="Unwrap Gift!", height="100px", height="100px")
+          p #{friend.name}
+          p #{friend.code}
+          p #{friend.torrent}
+          p #{friend.message}
+          p #{friend.gift_name}
+          p #{friend.opened_at}

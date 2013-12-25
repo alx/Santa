@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title= "Noel 2013"
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="/stylesheets/bootstrap.min.css" rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .container
+      .row
+        #tree.col-md-6
+          img(src="/images/tree.jpg", alt="Xmas tree", height="679px", width="1024px")
+        .col-md-6
+          block content
+    script(src="https://code.jquery.com/jquery.js")
+    script(src="/javascripts/bootstrap.min.js")
+    script(src="/javascripts/main.js")

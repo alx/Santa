@@ -1,0 +1,69 @@
+extends layout
+
+block content
+  #gifts
+    if isAdmin
+      .gift.row
+        .receiver.col-md-12
+          form(action="/friends/create", method="post", role="form")
+            .form-group
+              label(for="name", class="control-label col-sm-2") name: 
+              .col-sm-10
+                input(type="text", name="name", class="form-control")
+            .form-group
+              label(for="img", class="control-label col-sm-2") img: 
+              .col-sm-10
+                input(type="text", name="img", class="form-control")
+            .form-group
+              label(for="code", class="control-label col-sm-2") code: 
+              .col-sm-4
+                input(type="text", name="openingCode", class="form-control")
+              a(href='#', class="btn btn-info randomOpeningCode") Randomize
+            .form-group
+              label(for="message") message: 
+              textarea(name="message", class="form-control", rows="4")
+            .form-group
+              input(type="submit", value="add friend", class="form-control")
+    each friend in friends
+      .friend_info.row
+        .col-md-3
+          img(src="/images/friends/" + friend.img, alt=friend.name, width="100px", height="100px")
+        .col-md-9
+          span #{friend.name}
+      if isAdmin
+        .row
+          .col-md-12
+            form(action="/friends/" + friend.id + "/gifts/create", method="post", role="form")
+              .form-group
+                label(for="name", class="control-label col-sm-2") name:
+                .col-sm-10
+                  input(type="text", name="name", class="form-control")
+              .form-group
+                label(for="img", class="control-label col-sm-2") img:
+                .col-sm-10
+                  input(type="text", name="img", class="form-control")
+              .form-group
+                label(for="link", class="control-label col-sm-2") link:
+                .col-sm-10
+                  input(type="text", name="link", class="form-control")
+              .form-group
+                input(type="submit", value="add gift", class="form-control")
+      each gift in friend.gifts
+        if gift.isOpened
+          .gift.row
+            .col-md-3
+              img(src="/images/gifts/" + gift.img, alt=gift.name, width="100px", height="100px")
+            .col-md-9
+              a(href=gift.link) #{gift.name}
+        else
+          .gift.row
+            .col-md-3
+              img(src="/images/" + gift.wrap, alt="Unwrap Gift!", height="100px", height="100px")
+            .col-md-9
+              form(action="/friends/" + friend.id + "/openGift", method="post", role="form")
+                .form-group
+                  label(for="openingCode", class="control-label col-sm-3") Code :
+                  .col-sm-9
+                    input(type="password", name="openingCode", size="4", class="form-control")
+                .form-group
+                  input(type="submit", value="Open it!", class="form-control")

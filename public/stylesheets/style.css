@@ -1,0 +1,27 @@
+body {
+	background-color:#000;
+	color:#EEE;
+}
+
+a {
+	color:#EEE;
+}
+
+#tree img {
+	left:0px;
+	position:fixed;
+	top:20px;
+	z-index:-1;
+}
+
+.friend_info {
+  margin-top: 40px;
+}
+
+.friend_info .name {
+
+}
+
+.gift {
+  margin-top: 10px;
+}
