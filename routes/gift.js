@@ -9,7 +9,7 @@ exports.create = function(req, res) {
       wrap: "wrap-" + Math.floor(Math.random() * 16) + ".png"
     }).success(function(gift) {
       gift.setFriend(friend).success(function() {
-        res.redirect('/');
+        res.redirect('/admin');
       })
     })
   })

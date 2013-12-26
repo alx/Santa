@@ -42,7 +42,7 @@ app.get('/friends/:friend_id/gifts/:gift_id/destroy', gift.destroy)
 
 db
   .sequelize
-  .sync({ force: true })
+  .sync()
   .complete(function(err) {
     if (err) {
       throw err

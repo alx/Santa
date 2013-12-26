@@ -7,7 +7,7 @@ exports.create = function(req, res) {
     openingCode: req.param('openingCode'),
     message: req.param('message')
   }).success(function() {
-    res.redirect('/');
+    res.redirect('/admin');
   })
 }
 
@@ -21,8 +21,8 @@ exports.openGift = function(req, res) {
           gifts[i].isOpened = true;
           gifts[i].save().success(function(){});
         }
+        res.redirect('/');
       });
     }
-    res.redirect('/');
   });
 }
